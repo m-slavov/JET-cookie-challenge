@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JETCookies.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace JETCookies
 {
@@ -27,6 +29,16 @@ namespace JETCookies
         public void ConfigureServices(IServiceCollection services)
         {
 
+            var server = Configuration["DbServer"] ?? "localhost";
+            var port = Configuration["DbPort"] ?? "1433";
+            var user = Configuration["User"] ?? "SA";
+            var password = Configuration["Pass"] ?? "1Secure*Password1";
+
+            var connection = $"Server=db;Database=TakeawayCookies;User=sa;Password=1Secure*Password1;";
+
+            services.AddDbContext<DataContext>(
+                options => options.UseSqlServer(connection));
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -37,6 +49,8 @@ namespace JETCookies
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            SetUpDB.PrepareDB(app);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
