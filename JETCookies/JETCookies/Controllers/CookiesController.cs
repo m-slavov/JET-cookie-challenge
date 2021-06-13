@@ -30,8 +30,9 @@ namespace JETCookies.Controllers
                 o.Name,
                 o.Weight,
                 o.Calories,
-                Ingredient = o.CookieIngredients.Select(ot => ot.Ingredient).ToList()
-            }).ToList();
+                o.Image,
+                Ingredient = o.CookieIngredients.Select(ot => ot.Ingredient).OrderBy(o => o.Name).ToList()
+            }).OrderBy(o => o.Name).ToList();
 
             return Ok(cookielist);
         }
