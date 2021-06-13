@@ -1,13 +1,17 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
 version: '3.4'
 
 services:
   jetcookies:
-    image: ${DOCKER_REGISTRY-}jetcookies
+    image: jetcookies
     build:
       context: .
       dockerfile: JETCookies/Dockerfile
     ports:
-        - "8080:80"
+      - 5000:5000
+    depends_on: 
+      - db
   db:
     image: "mcr.microsoft.com/mssql/server"
     environment:
@@ -15,3 +19,12 @@ services:
         ACCEPT_EULA: "Y"
     ports:
         - "1433:1433"
+  vueui:
+    image: vueui
+    build:
+      context: vue-client
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 8081:8080
