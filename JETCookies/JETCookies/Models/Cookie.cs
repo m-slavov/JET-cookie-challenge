@@ -12,7 +12,7 @@ namespace JETCookies.Models
 
         [Required(ErrorMessage = "The cookie must have a name value")]
         public string Name { get; set; }
-
+        public string Image{ get; set; }
         public double Weight { get; set; }
 
         public double Calories { get; set; }

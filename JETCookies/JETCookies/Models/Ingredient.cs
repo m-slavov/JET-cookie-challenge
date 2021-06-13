@@ -12,6 +12,7 @@ namespace JETCookies.Models
 
         [Required(ErrorMessage = "Ingredient must have a name value")]
         public string Name { get; set; }
+        public string Image { get; set; }
 
         public virtual List<CookieIngredient> CookieIngredients { get; set; }
     }
