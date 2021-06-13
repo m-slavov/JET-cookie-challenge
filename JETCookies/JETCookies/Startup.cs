@@ -29,12 +29,13 @@ namespace JETCookies
         public void ConfigureServices(IServiceCollection services)
         {
 
-            var server = Configuration["DbServer"] ?? "localhost";
+            var server = Configuration["DbServer"] ?? "db";
             var port = Configuration["DbPort"] ?? "1433";
-            var user = Configuration["User"] ?? "SA";
+            var user = Configuration["User"] ?? "sa";
             var password = Configuration["Pass"] ?? "1Secure*Password1";
+            var db = Configuration["Database"] ?? "TakeawayCookies";
 
-            var connection = $"Server=db;Database=TakeawayCookies;User=sa;Password=1Secure*Password1;";
+            var connection = $"Server={server},{port};Database={db};User={user};Password={password};";
 
             services.AddDbContext<DataContext>(
                 options => options.UseSqlServer(connection));
