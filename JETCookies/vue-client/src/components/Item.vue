@@ -2,7 +2,7 @@
   <div class="w-3/4 m-auto">
     <div @click="toggleAccordion" class="bg-white border-red-400 dark:bg-gray-800 bg-opacity-95 border-opacity-60 | p-4 border-solid border-2 | grid sm:flex justify-around cursor-pointer | hover:border-gray-900 dark:hover:bg-orange-600 hover:border-transparent | transition-colors duration-500 | ease-in-out transform hover:-translate-y-1 hover:scale-110">
       
-      <img class="w-16 h-16 object-cover mb-auto mt-auto" src="../assets/cookie.png" alt="" />
+      <img class="w-16 h-16 object-cover mb-auto mt-auto rounded-full" :src="require(`@/assets/cookie_images/${cookie.image}.jpg`)" alt="" />
       
       <div class="flex flex-col justify-center text-center">
         <p class="font-bold text-xl">Name</p>
@@ -34,12 +34,12 @@
     </div>
     <div v-show="isOpen" class="border-orange-400 bg-orange-400 border-t-0 dark:bg-gray-800 bg-opacity-95 border-opacity-60 | p-4 border-solid border-2 | transition-colors duration-500">
       
-      <p>Calories per 100/g : 50 </p>
+      <p class="font-extrabold">Calories per 100/g : {{calcKcal(cookie)}} </p>
       <h1 class="divide-y text-center font-mono text-xl mt-2 mb-8">Ingredients</h1>
       <div  class="flex flex-wrap gap-4 justify-center" >
 
-        <div  v-for="ingredient in cookie.ingredient" v-bind:key="ingredient.id" class="border-white rounded-full h-48 w-48 flex items-center justify-center border-2 flex-col">
-          <img class="w-16 h-16 object-cover" src="../assets/cookie.png" alt="" />
+        <div  v-for="ingredient in cookie.ingredient" v-bind:key="ingredient.id" class="h-24 w-24 flex items-center justify-center flex-col">
+          <img class="w-16 h-16 object-cover" :src="require(`@/assets/ingredient_images/${ingredient.image}.png`)" alt="" />
           <p class="text-center block select-text"> {{ingredient.name}} </p>
         </div>
 
@@ -62,6 +62,12 @@ export default {
   methods: {
     toggleAccordion: function(){
       this.isOpen = !this.isOpen;
+    },
+    calcKcal: function(item){
+      console.log(item)
+      if (item.calories !== 0 && item.weight !== 0){
+        return ((item.calories / item.weight) * 100).toFixed(1)
+      }
     }
   },
   computed: {
