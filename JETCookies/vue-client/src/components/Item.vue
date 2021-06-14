@@ -1,28 +1,28 @@
 <template id="list-item">
-  <div class="w-3/4 m-auto">
-    <div @click="toggleAccordion" class="bg-white border-red-400 dark:bg-gray-800 bg-opacity-95 border-opacity-60 | p-4 border-solid border-2 | grid sm:flex justify-around cursor-pointer | hover:border-gray-900 dark:hover:bg-orange-600 hover:border-transparent | transition-colors duration-500 | ease-in-out transform hover:-translate-y-1 hover:scale-110">
+  <div class="m-auto w-11/12 md:w-10/12 lg:w-3/4">
+    <div @click="toggleAccordion" class="bg-white border-red-400 dark:bg-gray-800 bg-opacity-95 border-opacity-60 | p-4 border-solid border-2 | flex flex-col  sm:flex-row justify-around cursor-pointer | hover:border-gray-900 dark:hover:bg-orange-600 hover:border-transparent | transition-colors duration-500 | ease-in-out transform md:hover:-translate-y-1 md:hover:scale-110">
       
-      <img class="w-16 h-16 object-cover mb-auto mt-auto rounded-full" :src="require(`@/assets/cookie_images/${cookie.image}.jpg`)" alt="" />
+      <img class="w-16 h-16 object-cover mb-auto mt-auto rounded-full ml-auto mr-auto sm:ml-0 sm:mr-0" :src="require(`@/assets/cookie_images/${cookie.image}.jpg`)" alt="" />
       
       <div class="flex flex-col justify-center text-center">
-        <p class="font-bold text-xl">Name</p>
-        <p class="rounded-full py-3 px-6 bg-blue-100 select-text">{{cookie.name}}</p>
+        <p class="text-gray-500 font-bold text-lg md:text-lg lg:text-xl ml-auto mr-auto md:ml-0 md:mr-0 | mt-2 mb-2 md:m-0">Name</p>
+        <p class="font-serif rounded-full py-3 px-6 bg-blue-100 select-text">{{cookie.name}}</p>
       </div>
 
       <div class="flex flex-col justify-center text-center">
-        <div class="flex">
+        <div class="flex ml-auto mr-auto md:ml-0 md:mr-0 | mt-2 mb-2 md:m-0">
           <img class="h-5 w-5" src="../assets/scale.png" alt="" /> 
-          <p class="font-bold text-xl">Weight(g)</p>
+          <p class="text-gray-500 font-bold text-lg md:text-lg lg:text-xl">Weight(g)</p>
         </div>
-        <p class="rounded-full py-3 px-6 bg-blue-100">{{cookie.weight}}</p>
+        <p class="font-serif rounded-full py-3 px-6 bg-blue-100">{{cookie.weight}}</p>
       </div>
 
       <div class="flex flex-col justify-center text-center">
-        <div class="flex">
+        <div class="flex ml-auto mr-auto md:ml-0 md:mr-0 | mt-2 mb-2 md:m-0">
           <img class="h-5 w-5" src="../assets/calorie.png" alt="" /> 
-          <p class="font-bold text-xl">Calories</p>
+          <p class="text-gray-500 font-bold text-lg md:text-lg lg:text-xl">Calories</p>
         </div>
-        <p class="rounded-full py-3 px-6 bg-blue-100">{{cookie.calories}}</p>
+        <p class="font-serif rounded-full py-3 px-6 bg-blue-100">{{cookie.calories}}</p>
       </div>
       
       <div class="border-orange-400 rounded p-4 border-solid border-2 | px-4 py-3 text-sm focus:outline-none | mt-4 sm:mt-0">
